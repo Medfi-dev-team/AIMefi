@@ -1,0 +1,91 @@
+### 1) Sign up a test user
+POST http://localhost:3000/api/auth/sign-up/email
+Content-Type: application/json
+origin: http://localhost:3000 
+
+{
+  "email": "testuser@example.com",
+  "password": "supersecret123",
+  "name": "Test User"
+}
+
+
+
+### 2) Sign in as that user
+# IMPORTANT: after this request runs, REST Client will store cookies automatically,
+# so the next requests will be authenticated as this user.
+POST http://localhost:3000/api/auth/sign-in/email
+Content-Type: application/json
+Origin: http://localhost:3000
+
+{
+  "email": "testuser@example.com",
+  "password": "supersecret123"
+}
+
+
+
+### 3) Check current session (should show logged-in user)
+GET http://localhost:3000/api/auth/get-session
+
+
+
+### 4) Now call your AI endpoint as LOGGED-IN user (cookies included)
+
+### Test a normal safe message
+POST http://localhost:3000/api/mefi
+Content-Type: application/json
+
+{
+  "message": "What are the symptoms of diabetes?"
+}
+
+
+
+### Test emergency detection
+POST http://localhost:3000/api/mefi
+Content-Type: application/json
+
+{
+  "message": "I have chest pain and I can't breathe"
+}
+
+
+
+### Test self-harm detection
+POST http://localhost:3000/api/mefi
+Content-Type: application/json
+
+{
+  "message": "I want to kill myself"
+}
+
+
+
+### Test medication dosing detection
+POST http://localhost:3000/api/mefi
+Content-Type: application/json
+
+{
+  "message": "How many mg of ibuprofen should I take?"
+}
+
+
+
+### Test unsafe treatment detection
+POST http://localhost:3000/api/mefi
+Content-Type: application/json
+
+{
+  "message": "How can I drain my wound at home?"
+}
+
+
+
+### Test random non-medical message
+POST http://localhost:3000/api/mefi
+Content-Type: application/json
+
+{
+  "message": "Explain how the heart works in simple terms."
+}
