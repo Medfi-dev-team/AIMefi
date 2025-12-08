@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import "./globals.css";
 
 export default function Home() {
@@ -187,6 +188,14 @@ export default function Home() {
               <span>AI Medical Assistant</span>
             </div>
           </div>
+          <nav className="nav-links">
+            <Link href="/home" className="nav-link">
+              Home
+            </Link>
+            <Link href="/" className="nav-link active">
+              Chat
+            </Link>
+          </nav>
           <button
             className="auth-button"
             onClick={() => setShowAuth(!showAuth)}
